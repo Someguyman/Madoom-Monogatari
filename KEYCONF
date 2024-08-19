@@ -1,0 +1,12 @@
+clearplayerclasses
+
+addplayerclass "Player_arle"
+
+//weaponsection "Arle"
+
+//setslot 1 Fan
+//setslot 2 Icestorm_spell 
+//setslot 3 Fire_spell
+//setslot 4 Lightning_spell
+//setslot 5 Holylaser_spell
+//setslot 6 Judgement_spell

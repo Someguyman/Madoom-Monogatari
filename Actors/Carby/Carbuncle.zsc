@@ -1,0 +1,50 @@
+class Carbuncle : Actor
+{
+	Default
+	{
+		Health 60;
+		Radius 20;
+		Height 56;
+		Mass 100;
+		Speed 12;
+		PainChance 200;
+		Monster;
+		+NOTDMATCH
+		+FLOORCLIP
+		+INVULNERABLE
+		-COUNTKILL
+		+THRUGHOST
+		+FRIENDLY
+		+MOVEWITHSECTOR
+		+NOTARGET
+		-SHOOTABLE
+		-SOLID
+		+DROPOFF
+		+ALWAYSRESPAWN
+		+NOINFIGHTING
+		+DONTMORPH
+		+NOTELEFRAG
+		+NEVERFAST
+		+NOTIMEFREEZE
+		+AVOIDMELEE
+	}
+	States
+	{
+	Spawn:
+		CARB A 10 A_Look;
+		Loop;
+	See:
+		CARB AABBAACC 2 A_Chase;
+		Loop;
+	Missile:
+		tnt1 A 0 A_Jump(255, "see");
+		CARB A 6 A_FaceTarget;
+		CARB A 12
+		{
+		A_FaceTarget();
+		A_SpawnProjectile("BFGBall",28,0,0,0);
+		}
+		CARB A 12 A_FaceTarget;
+		Goto See;
+	}
+}

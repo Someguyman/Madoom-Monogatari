@@ -1,0 +1,36 @@
+class Fan : Arleweapon Replaces Fist
+{
+	Default
+	{
+		Weapon.SelectionOrder 3700;
+		Weapon.Kickback 100;
+		Obituary "$OB_MPFIST";
+		Tag "$TAG_FIST";
+		+WEAPON.WIMPY_WEAPON
+		+WEAPON.MELEEWEAPON
+		+WEAPON.NOAUTOSWITCHTO
+	}
+	States
+	{
+	Ready:
+		PUNG A 1 A_WeaponReady;
+		Loop;
+	Deselect:
+		TNT1 A 0 A_Lower;
+		TNT1 A 0 A_Lower;
+		PUNG A 1 A_Lower;
+		Loop;
+	Select:
+		TNT1 A 0 A_Raise;
+		TNT1 A 0 A_Raise;
+		PUNG A 1 A_Raise;
+		Loop;
+	Fire:
+		PUNG B 0;
+		PUNG D 8 A_Punch;
+		PUNG C 3;
+		PUNG B 6;
+		PUNG A 3 A_ReFire;
+		Goto Ready;
+	}
+}

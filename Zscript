@@ -1,0 +1,11 @@
+
+#include "Actors/Carby/Carbuncle.zsc"
+#include "Actors/Player/Player.zsc"
+#include "Actors/Weapons/Arleweaponbase.zsc"
+#include "Actors/Weapons/fan.zsc"
+#include "Actors/Weapons/fire.zsc"
+#include "Actors/Weapons/icestorm.zsc"
+#include "Actors/Weapons/lightning.zsc"
+#include "Actors/Weapons/Holylaser.zsc"
+#include "Actors/Weapons/Jugem.zsc"
+

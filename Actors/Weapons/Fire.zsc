@@ -1,0 +1,102 @@
+
+class Fire_spell : Arleweapon Replaces Shotgun
+{
+	Default
+	{
+		Weapon.SelectionOrder 1900;
+		Weapon.AmmoUse 1;
+		Weapon.AmmoGive 20;
+		Weapon.AmmoType "Shell";
+		Obituary "$OB_MPPISTOL";
+		+WEAPON.WIMPY_WEAPON
+		DamageType "Fire";
+		Inventory.Pickupmessage "$PICKUP_PISTOL_DROPPED";
+		Tag "$TAG_PISTOL";
+	}
+	States
+	{
+	Ready:
+		FIYA ABC 2 A_WeaponReady;
+		Loop;
+	Deselect:
+		TNT1 A 0 A_Lower;
+		TNT1 A 0 A_Lower;
+		FIYA A 1 A_Lower;
+		Loop;
+	Select:
+		TNT1 A 0 A_Raise;
+		TNT1 A 0 A_Raise;
+		FIYA A 1 A_Raise;
+		Loop;
+	Fire:
+		FIYA DE 2;
+		FIYA F 1 Bright;
+		FIYA G 1 Bright;
+		FIYA H 3 Bright
+		{
+		A_FireProjectile("FiyaShot",0,1,-8);
+		}
+		FIYA GF 2 Bright;
+		FIYA ED 2;
+		FIYA E 0 A_ReFire;
+		Goto Ready;
+ 	Spawn:
+		SHOT A -1;
+		Stop;
+	}
+}
+
+
+class FiyaShot : Fatshot
+{
+	Default
+	{
+		Speed 30;
+		Radius 13;
+		Height 8;
+		DamageFunction (Random (1, 4)*11);
+		+RANDOMIZE
+		+NODAMAGETHRUST
+		+HITTRACER
+	}
+	States
+	{
+		Spawn:
+			BAL1 AB 4 BRIGHT;
+			Loop;
+		Death:
+			MNFX A 8 BRIGHT A_SpawnItemEx("Fireeffectdamage",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS,0,0);
+			MNFX B 6 BRIGHT;
+			MNFX C 4 BRIGHT;
+			Stop;
+	}
+}
+
+
+Class Fireeffectdamage : actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		Radius 13;
+		Height 8;
+		+NOGRAVITY
+		+ALLOWPARTICLES
+		+RANDOMIZE
+		+HITTRACER
+		Scale 0.5;
+		Renderstyle "Add";
+	}
+	States
+	{
+	Spawn:
+      FIYT ABA 2 Bright A_DamageTracer(5,"Fire",DMSS_AFFECTARMOR,"None","None",AAPTR_TARGET);
+	  FIYT B 2 Bright {A_FireCrackle(); A_DamageTracer(5,"Fire",DMSS_AFFECTARMOR,"None","None",AAPTR_TARGET);}
+	  FIYT A 2 Bright {A_Fire(20); A_DamageTracer(5,"Fire",DMSS_AFFECTARMOR,"None","None",AAPTR_TARGET);}
+	  FIYT BCB 2 Bright {A_Fire(20); A_DamageTracer(4,"Fire",DMSS_AFFECTARMOR,"None","None",AAPTR_TARGET);}	  
+	  FIYT CBCD 2 Bright {A_Fire(20); A_DamageTracer(3,"Fire",DMSS_AFFECTARMOR,"None","None",AAPTR_TARGET);}	  
+	  FIYT CDEDEF 2 Bright {A_Fire(20); A_DamageTracer(2,"Fire",DMSS_AFFECTARMOR,"None","None",AAPTR_TARGET);}	  
+	  FIYT EFEFGHGHGH 2 Bright A_Fire(20);
+      stop;
+	}
+}

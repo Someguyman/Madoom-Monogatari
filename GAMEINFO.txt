@@ -1,0 +1,3 @@
+STARTUPTYPE = "Hexen"
+STARTUPTITLE = "Madoom monogatari"
+STARTUPCOLORS = "ff1717","db9d2a"

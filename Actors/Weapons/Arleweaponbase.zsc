@@ -1,0 +1,9 @@
+
+Class Arleweapon : DoomWeapon
+{
+	Default
+	{
+		INVENTORY.RESTRICTEDTO "Player_arle";
+		VISIBLETOPLAYERCLASS "Player_arle";
+	}
+}

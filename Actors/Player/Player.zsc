@@ -1,0 +1,88 @@
+class Player_arle : PlayerPawn
+{
+	Default
+	{
+		Speed 1;
+		Health 100;
+		Radius 16;
+		Height 56;
+		Mass 100;
+		PainChance 255;
+		Player.Face "ARL";
+		Player.DisplayName "Arle";
+		Player.CrouchSprite "PLYC";
+		Player.StartItem "Icestorm_spell";
+		Player.StartItem "Fan";
+		Player.StartItem "Clip", 50;
+		Player.WeaponSlot 1, "Fan";
+		Player.WeaponSlot 2, "Icestorm_Spell"; 
+		Player.WeaponSlot 3, "Fire_spell";
+		Player.WeaponSlot 4, "Lightning_spell";
+		Player.WeaponSlot 5, "Holylaser_spell";
+		Player.WeaponSlot 6, "Judgement_spell";
+		Player.WeaponSlot 7, "";
+		Player.ColorRange 112, 127;
+		Player.Colorset 0, "$TXT_COLOR_GREEN",		0x70, 0x7F,  0x72;
+		Player.Colorset 1, "$TXT_COLOR_GRAY",		0x60, 0x6F,  0x62;
+		Player.Colorset 2, "$TXT_COLOR_BROWN",		0x40, 0x4F,  0x42;
+		Player.Colorset 3, "$TXT_COLOR_RED",		0x20, 0x2F,  0x22;
+		// Doom Legacy additions
+		Player.Colorset 4, "$TXT_COLOR_LIGHTGRAY",	0x58, 0x67,  0x5A;
+		Player.Colorset 5, "$TXT_COLOR_LIGHTBROWN",	0x38, 0x47,  0x3A;
+		Player.Colorset 6, "$TXT_COLOR_LIGHTRED",	0xB0, 0xBF,  0xB2;
+		Player.Colorset 7, "$TXT_COLOR_LIGHTBLUE",	0xC0, 0xCF,  0xC2;
+	}
+
+	States
+	{
+	Spawn:
+		HXMG A -1;
+		Loop;
+	See:
+		HXMG ABCD 4;
+		Loop;
+	Missile:
+		HXMG E 12;
+		Goto Spawn;
+	Melee:
+		HXMG F 6 BRIGHT;
+		Goto Missile;
+	Pain:
+		HXMG G 4;
+		HXMG G 4 A_Pain;
+		Goto Spawn;
+	Death:
+		HXMG H 0 A_PlayerSkinCheck("AltSkinDeath");
+	Death1:
+		HXMG H 10;
+		HXMG I 10 A_PlayerScream;
+		HXMG J 10 A_NoBlocking;
+		HXMG KLM 10;
+		HXMG N -1;
+		Stop;
+	XDeath:
+		HXMG O 0 A_PlayerSkinCheck("AltSkinXDeath");
+	XDeath1:
+		HXMG O 5;
+		HXMG P 5 A_XScream;
+		HXMG Q 5 A_NoBlocking;
+		HXMG RSTUV 5;
+		HXMG W -1;
+		Stop;
+	AltSkinDeath:
+		HXMG H 6;
+		HXMG I 6 A_PlayerScream;
+		HXMG JK 6;
+		HXMG L 6 A_NoBlocking;
+		HXMG MNO 6;
+		HXMG P -1;
+		Stop;
+	AltSkinXDeath:
+		HXMG Q 5 A_PlayerScream;
+		HXMG R 0 A_NoBlocking;
+		HXMG R 5 A_SkullPop;
+		HXMG STUVWX 5;
+		HXMG Y -1;
+		Stop;
+	}
+}

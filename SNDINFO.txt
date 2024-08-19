@@ -1,0 +1,3 @@
+Icestorm/sight ICESTMST
+Icestorm/death ICESTMDH
+Holylaser/fire DSLEECH
